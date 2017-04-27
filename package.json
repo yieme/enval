@@ -1,0 +1,23 @@
+{
+  "name": "enval",
+  "version": "1.0.0",
+  "description": "ENvironment variable VALue. Returns variable as object from JSON.parse/JSONIC or a string",
+  "main": "index.js",
+  "dependencies": {
+    "jsonic": "^0.2.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://yieme@github.com/yieme/enval.git"
+  },
+  "author": "Yieme",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yieme/enval/issues"
+  },
+  "homepage": "https://github.com/yieme/enval#readme"
+}
