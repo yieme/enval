@@ -1,18 +1,38 @@
 'use strict'
 
-var JSONIC = require('jsonic')
+var JSONIC     = require('jsonic')
+var S          = require('string')
+var delimitLen = enval('DELIMIT_LEN', 25)
 
-function enval(name, defaultValue) {
+function delimit(str, len) {
+  len = len || delimitLen
+  str = str || ''
+  if (str.length > len) str = str.substr(0, len)
+  return str + S('.').repeat(len - str.length).s + ':'
+}
+
+function enval(name, defaultValue, log) {
+  function logVal(val) {
+    if (val !== undefined && log) {
+      if (typeof log == 'function') {
+        log(delimit(name), JSON.stringify(val))
+      } else {
+        console.log(delimit(name), JSON.stringify(val))
+      }
+    }
+    return val
+  }
+
   if (typeof name == 'string') {
     try {
-      return JSON.parse(process.env[name])
+      return logVal(JSON.parse(process.env[name]))
     } catch(e) {
       try {
-        return JSONIC(process.env[name])
+        return logVal(JSONIC(process.env[name]))
       } catch(e) {}
     }
   }
-  return (typeof process.env[name] == 'undefined') ? defaultValue : process.env[name]
+  return logVal((typeof process.env[name] == 'undefined') ? defaultValue : process.env[name])
 }
 
 module.exports = enval;

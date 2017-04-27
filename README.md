@@ -10,7 +10,7 @@ npm i enval --save
 
 ## Usage
 
-Instead of
+Instead of:
 
 ```js
 var myVal = process.env['MY_VARIABLE']
@@ -19,7 +19,12 @@ if (myVal) {
 }
 ```
 
-use
+Use:
+
+```sh
+MY_VARIABLE=hi:mom node yourApp.js
+```
+
 
 ```js
 var enval = require('enval')
@@ -45,5 +50,19 @@ hello | hello | via JSON.parse()
 foo:bar | { foo: "bar" } | via JSONIC()
 greet:Bob,age:18 | { greet: "Bob", age: 18 } | via JSONIC()
 invalid:jsonic,value,here | invalid:jsonic,value,here | pass-thru as unable to parse
+
+## Optional logging if variable, if it exists
+
+```js
+var myVal = enval('MY_VARIABLE', undefined, true)
+// Logged: MY_VARIABLE..............: ("hi":"mom")
+```
+
+Provide your own logging function
+
+```js
+var myVal = enval('MY_VARIABLE', undefined, console.error)
+// Logged: MY_VARIABLE..............: ("hi":"mom")
+```
 
 ## License MIT
