@@ -15,10 +15,9 @@ function enval(name, defaultValue, log) {
   function logVal(val) {
     if (val !== undefined && log) {
       if (typeof log == 'function') {
-        log(delimit(name), JSON.stringify(val))
-      } else {
-        console.log(delimit(name), JSON.stringify(val))
+        val = log(val) // apply transform function
       }
+      console.log(delimit(name), JSON.stringify(val))
     }
     return val
   }
