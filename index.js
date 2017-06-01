@@ -14,8 +14,8 @@ function delimit(str, len) {
 function enval(name, defaultValue, log) {
   function logVal(val) {
     if (val !== undefined && log) {
-      if (log === 1 && typeof val == 'string' && val.length > 0) {
-        console.log(delimit(name), val.substr(0,1) + '...')
+      if (typeof log == 'number' && log > 0 && typeof val == 'string' && val.length > 0) {
+        console.log(delimit(name), val.substr(0, log) + '...')
       } else if (typeof log == 'function') {
         console.log(delimit(name), JSON.stringify(log(val)))
       } else {

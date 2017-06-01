@@ -29,7 +29,7 @@ assert(val !== undefined, 'TEST4 should exist');
 assert(val === 21, 'TEST4 should equal 21');
 
 console.log('')
-val = envic('TEST5', undefined, true)
+val = envic('TEST5', undefined, 4)
 assert(val !== undefined, 'TEST5 should exist');
 assert(val == "Howdy", 'TEST5 should equal "Howdy"');
 
@@ -63,3 +63,7 @@ assert(val === 'Yo', 'TEST11 should be "Yo"');
 console.log('')
 val = envic('TEST_FN', undefined, function(v) { return 'No' })
 assert(val === 'Yes', 'TEST_FN should be "Yes"');
+
+console.log('')
+val = envic('TEST_FN', undefined, 0)
+assert(val === 'Yes', 'TEST_FN should still be "Yes"');
