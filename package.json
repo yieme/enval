@@ -9,7 +9,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "TEST=foo:bar TEST2='{\"greet\":\"Bob\",\"age\":18}' TEST3=null TEST4=21 TEST5=Howdy TEST6=0 TEST7=false TEST9=a:b,c:d,e node test.js"
+    "test": "TEST=foo:bar TEST2='{\"greet\":\"Bob\",\"age\":18}' TEST3=null TEST4=21 TEST5=Howdy TEST6=0 TEST7=false TEST9=a:b,c:d,e TEST10=Hi TEST11=Yo TEST_FN=Yes node test.js"
   },
   "repository": {
     "type": "git",
