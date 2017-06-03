@@ -13,7 +13,7 @@ function delimit(str, len) {
 
 function enval(name, defaultValue, log) {
   function logVal(val) {
-    if (val !== undefined && log) {
+    if (val !== undefined && val !== null && log) {
       if (typeof log == 'number' && log > 0 && typeof val == 'string' && val.length > 0) {
         console.log(delimit(name), val.substr(0, log) + '...')
       } else if (typeof log == 'function') {
