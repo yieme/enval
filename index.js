@@ -18,6 +18,9 @@ function enval(name, defaultValue, log) {
       if (typeof log == 'number' && log > 0 && typeof val == 'string' && val.length > 0) {
         console.log(colors.gray(delimit(name)), colors.gray(val.substr(0, log) + '...'))
       } else if (typeof log == 'function') {
+        if (typeof val == 'object') {
+          val = JSON.parse(JSON.stringify(val)) // create new object preclude assignements in logging function
+        }
         console.log(colors.gray(delimit(name)), colors.gray(JSON.stringify(log(val))))
       } else {
         console.log(colors.gray(delimit(name)), colors.gray(JSON.stringify(val)))
