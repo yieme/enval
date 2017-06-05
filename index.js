@@ -2,13 +2,14 @@
 
 var JSONIC     = require('jsonic')
 var S          = require('string')
-var delimitLen = enval('DELIMIT_LEN', 25)
+var delimitLen = process.env.DELIMIT_LEN || 25
 var colors     = require('colors')
 
 function delimit(str, len) {
   len = len || delimitLen
   str = str || ''
   if (str.length > len) str = str.substr(0, len)
+  console.log('str:', str, typeof str, len, str.length)
   return str + S('.').repeat(len - str.length).s + ':'
 }
 
@@ -23,19 +24,29 @@ function enval(name, defaultValue, log) {
         console.log(colors.gray(delimit(name)), colors.gray(JSON.stringify(val)))
       }
     }
-    return val
   }
 
   if (typeof name == 'string') {
     try {
-      return logVal(JSON.parse(process.env[name]))
+      var val = JSON.parse(process.env[name])
+      logVal(val)
+      return val
     } catch(e) {
       try {
-        return logVal(JSONIC(process.env[name]))
-      } catch(e) {}
+        var val = JSONIC(process.env[name])
+        logVal(val)
+        return val
+      } catch(e) {
+        var val = process.env[name]
+        logVal(val)
+        return val
+      }
     }
   }
-  return logVal((typeof process.env[name] == 'undefined') ? defaultValue : process.env[name])
+
+  var val = (typeof process.env[name] == 'undefined') ? defaultValue : process.env[name]
+  logVal(val)
+  return val
 }
 
 module.exports = enval;
