@@ -9,7 +9,6 @@ function delimit(str, len) {
   len = len || delimitLen
   str = str || ''
   if (str.length > len) str = str.substr(0, len)
-  console.log('str:', str, typeof str, len, str.length)
   return str + S('.').repeat(len - str.length).s + ':'
 }
 
@@ -28,25 +27,25 @@ function enval(name, defaultValue, log) {
 
   if (typeof name == 'string') {
     try {
-      var val = JSON.parse(process.env[name])
-      logVal(val)
-      return val
+      var value = JSON.parse(process.env[name])
+      logVal(value)
+      return value
     } catch(e) {
       try {
-        var val = JSONIC(process.env[name])
-        logVal(val)
-        return val
+        var value = JSONIC(process.env[name])
+        logVal(value)
+        return value
       } catch(e) {
-        var val = process.env[name]
-        logVal(val)
-        return val
+        var value = process.env[name]
+        logVal(value)
+        return value
       }
     }
   }
 
-  var val = (typeof process.env[name] == 'undefined') ? defaultValue : process.env[name]
-  logVal(val)
-  return val
+  var value = (typeof process.env[name] == 'undefined') ? defaultValue : process.env[name]
+  logVal(value)
+  return value
 }
 
 module.exports = enval;
