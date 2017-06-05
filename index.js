@@ -3,6 +3,7 @@
 var JSONIC     = require('jsonic')
 var S          = require('string')
 var delimitLen = enval('DELIMIT_LEN', 25)
+var colors     = require('colors')
 
 function delimit(str, len) {
   len = len || delimitLen
@@ -15,11 +16,11 @@ function enval(name, defaultValue, log) {
   function logVal(val) {
     if (val !== undefined && val !== null && log) {
       if (typeof log == 'number' && log > 0 && typeof val == 'string' && val.length > 0) {
-        console.log(delimit(name), val.substr(0, log) + '...')
+        console.log(colors.gray(delimit(name)), colors.gray(val.substr(0, log) + '...'))
       } else if (typeof log == 'function') {
-        console.log(delimit(name), JSON.stringify(log(val)))
+        console.log(colors.gray(delimit(name)), colors.gray(JSON.stringify(log(val))))
       } else {
-        console.log(delimit(name), JSON.stringify(val))
+        console.log(colors.gray(delimit(name)), colors.gray(JSON.stringify(val)))
       }
     }
     return val
