@@ -46,7 +46,7 @@ function enval(name, defaultValue, log) {
     }
   }
 
-  var value = (typeof process.env[name] == 'undefined') ? defaultValue : process.env[name]
+  var value = (typeof process.env[name] == 'undefined' || typeof process.env[name] == 'null') ? defaultValue : process.env[name]
   logVal(value)
   return value
 }

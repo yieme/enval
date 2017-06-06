@@ -1,6 +1,6 @@
 {
   "name": "enval",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "description": "ENvironment variable VALue. Returns variable as object from JSON.parse/JSONIC or a string",
   "main": "index.js",
   "dependencies": {
